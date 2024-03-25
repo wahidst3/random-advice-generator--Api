@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Advice generator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <p id="span">Advice # <span id="no">23</span></p>
+ <p id="advice">
+    " By knowing your electorate better, we achieve greater influence while lowering overall costs."
+    </p>
+<img id="'divide" src="images/pattern-divider-desktop.svg" alt="">
+<div id="dice">
+ <button onclick="generateRandom()"> <img src="images/icon-dice.svg" alt=""></button>
+</div>
+  </div>
+
+  <script>
+    let url='https://api.adviceslip.com/advice';
+    let advice=document.getElementById('advice');
+    let generate=document.querySelector('button');
+    let id=document.querySelector('#no');
+
+  async  function generateRandom(){
+      let response= await fetch(url);
+      let data=await response.json();
+      console.log(data.slip.advice);
+
+
+      advice.innerText=`"${data.slip.advice}"`;
+    id.innerText=data.slip.id
+    }
+   
+  </script>
+</body>
+</html>
